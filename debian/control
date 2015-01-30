@@ -1,0 +1,14 @@
+Source: libpwmaudio-chipkit
+Section: libraries
+Priority: extra
+XBSC-Group: Audio
+XBSC-Family: pic32
+Maintainer: Matt Jenkins <matt@majenko.co.uk>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+
+Package: libpwmaudio-chipkit
+Architecture: all
+Depends: chipkit
+Description: PWMAudio library for chipkit
+

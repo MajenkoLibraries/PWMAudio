@@ -1,0 +1,5 @@
+PWMAudio.cpp libraries/Audio/chipkit/PWMAudio/
+PWMAudio.h libraries/Audio/chipkit/PWMAudio/
+examples/SoundTest/footsteps.h libraries/Audio/chipkit/PWMAudio/examples/SoundTest
+examples/SoundTest/gameover.h libraries/Audio/chipkit/PWMAudio/examples/SoundTest
+examples/SoundTest/SoundTest.pde libraries/Audio/chipkit/PWMAudio/examples/SoundTest
