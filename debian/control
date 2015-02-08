@@ -9,6 +9,7 @@ Standards-Version: 3.9.4
 
 Package: libpwmaudio-chipkit
 Architecture: all
+Provides: PWMAudio.h
 Depends: chipkit
 Description: PWMAudio library for chipkit
 
