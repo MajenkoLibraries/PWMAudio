@@ -5,7 +5,7 @@
 
 #define USE_TIMER 4
 #define MAX_SAMPLES 28
-#define AUDIO_LOG2 12
+#define AUDIO_LOG2 10
 #define AUDIO_BITS (1 << AUDIO_LOG2)
 
 #define _BN_TIMER_OC    0
@@ -35,6 +35,7 @@ class PWMAudio
         unsigned char amplifierPin;
         unsigned int sampleRate;
         unsigned char ampInvert;
+        uint32_t bitDepth;
 
         int mix(int a, int b);
 
@@ -46,6 +47,8 @@ class PWMAudio
 
         void ampOn();
         void ampOff();
+
+        void setBitDepth(uint32_t bd) { bitDepth = bd; }
 
         PWMAudio(unsigned char pin, unsigned int sfreq);
         PWMAudio(unsigned char pin, unsigned int sfreq, unsigned char amp);

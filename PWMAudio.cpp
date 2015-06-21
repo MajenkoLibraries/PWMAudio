@@ -14,6 +14,7 @@ PWMAudio::PWMAudio (unsigned char pin, unsigned int sfreq)
     this->sampleRate = sfreq;
     this->amplifierPin = 255;
     this->ampInvert = 0;
+    this->bitDepth = 12;
 }
     
 PWMAudio::PWMAudio (unsigned char pin, unsigned int sfreq, unsigned char amp)
@@ -22,6 +23,7 @@ PWMAudio::PWMAudio (unsigned char pin, unsigned int sfreq, unsigned char amp)
     this->sampleRate = sfreq;
     this->amplifierPin = amp;
     this->ampInvert = 0;
+    this->bitDepth = 12;
 }
 
 void PWMAudio::invertAmpTrigger() {
@@ -54,7 +56,7 @@ void PWMAudio::begin()
 
     T3CONbits.TCKPS = 0b000; // 1:1
 	T3CONbits.TON = 1;
-    PR3 = AUDIO_BITS;
+    PR3 = (1 << this->bitDepth);
 
     uint16_t timer = digitalPinToTimerOC(this->audioPin) >> _BN_TIMER_OC;
 
@@ -73,31 +75,31 @@ void PWMAudio::begin()
             OC1CONbits.OCTSEL = 1;
             OC1CONbits.OCM = 0b110;
             OC1CONbits.ON = 1;
-            OC1RS = AUDIO_BITS >> 1;
+            OC1RS = (1 << this->bitDepth-1);
             break;
         case _TIMER_OC2:
             OC2CONbits.OCTSEL = 1;
             OC2CONbits.OCM = 0b110;
             OC2CONbits.ON = 1;
-            OC2RS = AUDIO_BITS >> 1;
+            OC2RS = (1 << this->bitDepth-1);
             break;
         case _TIMER_OC3:
             OC3CONbits.OCTSEL = 1;
             OC3CONbits.OCM = 0b110;
             OC3CONbits.ON = 1;
-            OC3RS = AUDIO_BITS >> 1;
+            OC3RS = (1 << this->bitDepth-1);
             break;
         case _TIMER_OC4:
             OC4CONbits.OCTSEL = 1;
             OC4CONbits.OCM = 0b110;
             OC4CONbits.ON = 1;
-            OC4RS = AUDIO_BITS >> 1;
+            OC4RS = (1 << this->bitDepth-1);
             break;
         case _TIMER_OC5:
             OC5CONbits.OCTSEL = 1;
             OC5CONbits.OCM = 0b110;
             OC5CONbits.ON = 1;
-            OC5RS = AUDIO_BITS >> 1;
+            OC5RS = (1 << this->bitDepth-1);
             break;
     }
     if (this->amplifierPin != 255) {
@@ -157,7 +159,7 @@ void PWMAudio::generateAudio()
         }
 
         val = val + 32768;
-        val = val >> (16 - AUDIO_LOG2);
+        val = val >> (16 - this->bitDepth);
         switch (digital_pin_to_timer_PGM[this->audioPin]) {
             case _TIMER_OC1:
                 OC1RS = val;
