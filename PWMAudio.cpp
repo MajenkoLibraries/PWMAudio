@@ -55,8 +55,20 @@ void PWMAudio::begin()
     T3CONbits.TCKPS = 0b000; // 1:1
 	T3CONbits.TON = 1;
     PR3 = AUDIO_BITS;
+
+    uint16_t timer = digitalPinToTimerOC(this->audioPin) >> _BN_TIMER_OC;
+
+#if defined(__PIC32MX1XX__) || defined(__PIC32MX2XX__) || defined(__PIC32MZXX__) || defined(__PIC32MX47X__)
+    volatile uint32_t * pps;
+
+    /* On devices with peripheral pin select, it is necessary to connect
+    ** the output compare to the pin.
+    */
+    pps = ppsOutputRegister(this->audioPin);
+    *pps = ppsOutputSelect(timerOCtoOutputSelect(timer));
+#endif
     
-    switch (digital_pin_to_timer_PGM[this->audioPin]) {
+    switch (timer) {
         case _TIMER_OC1:
             OC1CONbits.OCTSEL = 1;
             OC1CONbits.OCM = 0b110;
