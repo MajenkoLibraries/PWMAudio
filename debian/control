@@ -1,7 +1,8 @@
 Source: libpwmaudio-chipkit
-Section: libraries
+Section: main
 Priority: extra
-XBSC-Group: Audio
+XBSC-Group: Libraries
+XBSC-SubGroup: Audio
 XBSC-Family: pic32
 Maintainer: Matt Jenkins <matt@majenko.co.uk>
 Build-Depends: debhelper (>= 8.0.0)
