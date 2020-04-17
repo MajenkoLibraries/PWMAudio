@@ -1,18 +1,1 @@
-{
-    "name": "PWMAudio",
-    "provides": "PWMAudio.h",
-    "license": "LICENSE.md",
-    "readme": "README.md",
-    "description": "Basic PWM Audio generation for chipKIT",
-    "category": "Audio",
-    "subcategory": "CODEC",
-    "maintainer": "Matt Jenkins <matt@majenko.co.uk>",
-    "version": "1.0.6",
-    "family": "pic32",
-    "core": "chipkit",
-    "install": {
-        "examples": "/",
-        "PWMAudio.cpp": "/",
-        "PWMAudio.h": "/"
-    }
-}
+{"name":"PWMAudio","provides":"PWMAudio.h","license":"LICENSE.md","readme":"README.md","description":"Basic PWM Audio generation for chipKIT","category":"Audio","subcategory":"CODEC","maintainer":"Matt Jenkins <matt@majenko.co.uk>","version":"1.0.7","family":"pic32","core":"chipkit","install":{"examples":"\/","library.properties":"\/","src":"\/"}}
